@@ -1,45 +1,63 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 public class Movement : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Rigidbody rb;
+    public float lookSpeed = 10;
+    public float movementSpeed = 5;
+    private Vector3 curLoc;
+    private Vector3 prevLoc;
+    private Transform targetLocation;
+    
 
-    [SerializeField] Rigidbody cubeRigidbody;
-    [SerializeField] float MovementSpeed=10f;
-    [SerializeField] float RotationSpeed = 30f;
-    [SerializeField] float MaxSpeed = 20f;
+    private float appliedMovementSpeed;
+    private float counter = 0f;
 
-    void Start()
+    private void Start()
     {
-        
+        targetLocation = new GameObject().transform;
     }
 
-    // Update is called once per frame
     void Update()
     {
-
-        
-        //apply force forward
-        if (Input.GetKey(KeyCode.W) && cubeRigidbody.velocity.magnitude<MaxSpeed)
-        {
-            
-            cubeRigidbody.AddForce( transform.forward*MovementSpeed*Time.deltaTime);
-        }
-
-
-        //left and right rotation
-        if (Input.GetKey(KeyCode.D))
-        {
-            
-           transform.Rotate(transform.up, RotationSpeed * Time.deltaTime * cubeRigidbody.velocity.magnitude/5);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-           transform.Rotate(transform.up, -RotationSpeed * Time.deltaTime * cubeRigidbody.velocity.magnitude/5);
-        }
-
+        InputListen();
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetLocation.rotation,counter);
+        appliedMovementSpeed = movementSpeed * Mathf.Sqrt(transform.localScale.x);
+        counter += Time.deltaTime;
     }
 
+    private void InputListen()
+    {
+        prevLoc = curLoc;
+        curLoc = transform.position;
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            targetLocation.position = transform.position + Vector3.left * 10;
+            
+            curLoc.x -= appliedMovementSpeed * Time.fixedDeltaTime;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            targetLocation.position = transform.position + Vector3.right * 10;
+            curLoc.x += appliedMovementSpeed * Time.fixedDeltaTime;
+
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            targetLocation.position = transform.position + Vector3.forward * 10;
+            curLoc.z += appliedMovementSpeed * Time.fixedDeltaTime;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            targetLocation.position = transform.position -Vector3.forward * 10;
+            curLoc.z -= appliedMovementSpeed * Time.fixedDeltaTime;
+        }
+        transform.position = curLoc;
+
+        Debug.DrawLine(transform.position, targetLocation.position, Color.red, 0.5f);
+
+    }
 }
+    

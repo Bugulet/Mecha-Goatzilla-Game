@@ -44,8 +44,8 @@ MonoBehaviour:
     randomizeYRotation: 1
     randomizeZRotation: 0
     parentContainer: {fileID: 0}
-    density: 1
-    brushSize: 5
+    density: 2.09
+    brushSize: 18
     minScale: 0.5
     maxScale: 1.5
     offsetFromPivot: {x: 0, y: 0, z: 0}
@@ -61,14 +61,14 @@ MonoBehaviour:
     brushObject: {fileID: 4771708204357489261, guid: 20b656971aacdfc478eb6af971cf8d45,
       type: 3}
     usePrefabs: 1
-    allowIntercollision: 1
-    alignToSurface: 1
+    allowIntercollision: 0
+    alignToSurface: 0
     randomizeXRotation: 0
     randomizeYRotation: 1
     randomizeZRotation: 0
     parentContainer: {fileID: 0}
-    density: 1
-    brushSize: 5
+    density: 2.09
+    brushSize: 18
     minScale: 0.5
     maxScale: 1.5
     offsetFromPivot: {x: 0, y: 0, z: 0}
@@ -90,8 +90,8 @@ MonoBehaviour:
     randomizeYRotation: 1
     randomizeZRotation: 0
     parentContainer: {fileID: 0}
-    density: 1
-    brushSize: 5
+    density: 2.09
+    brushSize: 18
     minScale: 0.5
     maxScale: 1.5
     offsetFromPivot: {x: 0, y: 0, z: 0}

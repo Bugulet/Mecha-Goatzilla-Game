@@ -92,9 +92,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa2647f07647dd4488c7a697cdc2284f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mass: 0.09
+  Mass: 0.03
   MinimumWeight: 1.08
-  ShrinkSpeed: 0.45
+  ShrinkSpeed: 0.03
   IsDestroyed: 0
 --- !u!65 &-763512670079249582
 BoxCollider:
