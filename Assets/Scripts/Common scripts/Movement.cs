@@ -17,11 +17,13 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         targetLocation = new GameObject().transform;
+        
     }
 
     void Update()
     {
         InputListen();
+        
         transform.rotation = Quaternion.Slerp(transform.rotation, targetLocation.rotation,counter);
         appliedMovementSpeed = movementSpeed * Mathf.Sqrt(transform.localScale.x);
         counter += Time.deltaTime;
